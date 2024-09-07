@@ -29,7 +29,6 @@ const RegisterForm = ({ user }: { user: User }) => {
 
   const form = useForm<z.infer<typeof PatientFormValidation>>({
     resolver: zodResolver(PatientFormValidation),
-    // @ts-ignore
     defaultValues: {
       ...PatientFormDefaultValues,
       name: user.name,
@@ -67,7 +66,7 @@ const RegisterForm = ({ user }: { user: User }) => {
       // @ts-ignore
       const patient = await registerPatient(patientData);
 
-      if (patient) router.push(`/patients/${patient.$id}/new-appointment`);
+      if (patient) router.push(`/patients/${user.$id}/new-appointment`);
     } catch (error) {
       console.log(error);
     }
